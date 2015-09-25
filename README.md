@@ -1,7 +1,5 @@
 # pencilwars
-release
-
-I wrote this game to learn some Python. 
+I wrote this game to learn some Python. The idea comes from the paper games I played as a kid. This version is detailed in [Tom Angleberger's _Oragami Yoda_.](http://origamiyoda.com/)
 
 game logic:  
 1. player X chooses ship  
