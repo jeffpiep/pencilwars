@@ -38,9 +38,9 @@ playCol = (blue, red)
 # create a screen
 size = (800,600)
 screen = pygame.display.set_mode(size)
-screenImage = pygame.image.load("pencilPaper.jpg").convert()
+screenImage = pygame.image.load("./graphics/pencilPaper.jpg").convert()
 screenImage = pygame.transform.scale(screenImage,size)
-logoImage = pygame.image.load("pencilWars.png").convert()
+logoImage = pygame.image.load("./graphics/pencilWars.png").convert()
 logoImage.set_colorkey(white)
 screenImage.blit(logoImage,(0,0))
 
@@ -50,8 +50,8 @@ shipAlive = [True] * 2 * numShips
 # player 1 ships in first numShips and player 2 in second numShips
 shipRadius = 20
 shipImage=list()
-shipImage.append(pygame.image.load("pencilXWing.png").convert())
-shipImage.append(pygame.image.load("pencilTIE.png").convert())
+shipImage.append(pygame.image.load("./graphics/pencilXWing.png").convert())
+shipImage.append(pygame.image.load("./graphics/pencilTIE.png").convert())
 for iShip in range(len(shipImage)):
     shipImage[iShip] = pygame.transform.scale(shipImage[iShip],(2*shipRadius,2*shipRadius))
     shipImage[iShip].set_colorkey(white)
@@ -63,14 +63,14 @@ for iPlay in range(2):
         shipPosY.append(int(size[1]/(numShips+1)*(iShip+1)))
 flickScale = 30
 # obstacles
-deathImage = pygame.image.load("pencilDeathStar.png").convert()
+deathImage = pygame.image.load("./graphics/pencilDeathStar.png").convert()
 deathImage.set_colorkey(white)
 deathRadius = 60
 deathPosX = int(size[0]/2)
 deathPosY = int(size[1]/2)
 deathAlive = True
 
-roidImage = pygame.image.load("pencilAsteroid.png").convert()
+roidImage = pygame.image.load("./graphics/pencilAsteroid.png").convert()
 roidImage.set_colorkey(white)
 roidCol = black
 numRoids = 5
