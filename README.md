@@ -1,4 +1,4 @@
-# pencilwars
+# pencilWars
 I wrote this game to learn some Python. The idea comes from the paper games I played as a kid. This version is detailed in [Tom Angleberger's _Oragami Yoda_.](http://origamiyoda.com/). It is built using the [pygame 1.9](http://www.pygame.org/) package and runs in either 2.7 or 3.4.
 
 game logic:  
