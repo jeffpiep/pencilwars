@@ -50,8 +50,8 @@ shipAlive = [True] * 2 * numShips
 # player 1 ships in first numShips and player 2 in second numShips
 shipRadius = 20
 shipImage=list()
-shipImage.append(pygame.image.load("./graphics/pencilXWing.png").convert())
-shipImage.append(pygame.image.load("./graphics/pencilTIE.png").convert())
+shipImage.append(pygame.image.load("./graphics/pencilA.png").convert())
+shipImage.append(pygame.image.load("./graphics/pencilB.png").convert())
 for iShip in range(len(shipImage)):
     shipImage[iShip] = pygame.transform.scale(shipImage[iShip],(2*shipRadius,2*shipRadius))
     shipImage[iShip].set_colorkey(white)
@@ -63,12 +63,12 @@ for iPlay in range(2):
         shipPosY.append(int(size[1]/(numShips+1)*(iShip+1)))
 flickScale = 30
 # obstacles
-deathImage = pygame.image.load("./graphics/pencilDeathStar.png").convert()
-deathImage.set_colorkey(white)
-deathRadius = 60
-deathPosX = int(size[0]/2)
-deathPosY = int(size[1]/2)
-deathAlive = True
+stationImage = pygame.image.load("./graphics/pencilStation.png").convert()
+stationImage.set_colorkey(white)
+stationRadius = 60
+stationPosX = int(size[0]/2)
+stationPosY = int(size[1]/2)
+stationAlive = True
 
 roidImage = pygame.image.load("./graphics/pencilAsteroid.png").convert()
 roidImage.set_colorkey(white)
@@ -81,8 +81,8 @@ roidPosY = list()
 roidAlive = [True] * numRoids
 for iRoid in range(numRoids):
     x=random.randint(int(size[0]/6) + 2*roidRadius + shipRadius + 1, int(size[0]/6*5) - 2*roidRadius -shipRadius - 1)
-    if math.fabs(x-size[0]/2) < deathRadius:
-        y=size[1]/2+math.copysign(random.randint(deathRadius,size[1]/2-roidRadius),random.randint(-1,1))
+    if math.fabs(x-size[0]/2) < stationRadius:
+        y=size[1]/2+math.copysign(random.randint(stationRadius,size[1]/2-roidRadius),random.randint(-1,1))
     else:
         y=random.randint(roidRadius,size[1]-roidRadius)
     roidPosX.append(x)
@@ -177,9 +177,9 @@ while done == False:
 
         #did it collide with an asteroid or another ship?
         strikeList = list();
-        #first check to see if it hit the death star
-        dist=line2point(shipPosX[shipSelected],shipPosY[shipSelected],shipPosX[shipSelected]+flickDX,shipPosY[shipSelected]+flickDY,deathPosX,deathPosY)
-        if dist < shipRadius + deathRadius: #hit the Death Star!
+        #first check to see if it hit the station star
+        dist=line2point(shipPosX[shipSelected],shipPosY[shipSelected],shipPosX[shipSelected]+flickDX,shipPosY[shipSelected]+flickDY,stationPosX,stationPosY)
+        if dist < shipRadius + stationRadius: #hit the Station!
             strikeList.append((2,0,dist))
         for shipID in range(2*numShips):
             #exclude selected ship
@@ -211,12 +211,12 @@ while done == False:
                 flickDX = int(newDist * math.cos(mouseDir)) 
                 flickDY = int(newDist * math.sin(mouseDir)) 
                 msg=("Player " + str(loseTurn+1) + " loses a turn!")
-            elif victim[0]==2: #the death star
-##                deathAlive = False
+            elif victim[0]==2: #the station star
+##                stationAlive = False
                 shipAlive[shipSelected]=False
 ##                winner = (playTurn + 1) % 2
 ##                done = True
-                msg=('Player ' + str(playTurn+1) + ' hit the Death Star!')
+                msg=('Player ' + str(playTurn+1) + ' hit the Space Station!')
 
         # next players turn
         playTurn = (playTurn + 1) % 2
@@ -234,9 +234,9 @@ while done == False:
 ##    screen.fill(white)
     screen.blit(screenImage,(0,0))
     # ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
-    # draw the death star
-    screen.blit(deathImage, (size[0]//2 - deathRadius, size[1]//2 - deathRadius) )
-##    pygame.draw.circle(screen, black, (deathPosX, deathPosY), deathRadius, 1)
+    # draw the station star
+    screen.blit(stationImage, (size[0]//2 - stationRadius, size[1]//2 - stationRadius) )
+##    pygame.draw.circle(screen, black, (stationPosX, stationPosY), stationRadius, 1)
     # draw the ships
     for iPlay in range(2):
         for iShip in range(numShips):
